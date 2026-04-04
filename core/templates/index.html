@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Prayer Power Network | Experience Supernatural Intervention</title>
+  <link rel="icon" type="image/png" href="{% static 'images/PPN logo1.png' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">
+    <img src="{% static 'images/PPN logo1.png' %}" alt="Prayer Power Network Logo" class="logo-img">
+    PRAYER POWER <span>NETWORK</span>
+  </div>
+  <div class="menu-icon" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'events' %}">Events</a></li>
+    <li><a href="{% url 'sermons' %}">Sermons</a></li>
+    <li><a href="{% url 'testimonies' %}">Testimonies</a></li>
+    <li><a href="{% url 'blog_list' %}">Blogs</a></li>
+    <li><a href="{% url 'appointment' %}">Book appointment</a></li>
+    <li><a href="{% url 'donate' %}" class="donate-btn">Donate</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- Hero Slideshow -->
+  <div class="hero" id="home">
+    {% load static %}
+<div class="slideshow-container">
+  <div class="slide fade" style="background-image: url('{% get_static_prefix %}images/img1.jpeg');"></div>
+  <div class="slide fade" style="background-image: url('{% get_static_prefix %}images/img2.jpeg');"></div>
+  <div class="slide fade" style="background-image: url('{% get_static_prefix %}images/img3_1.jpeg');"></div>
+</div>
+    <div class="hero-overlay"></div>
+    <div class="hero-cross"></div>
+    <div class="hero-content">
+      <button class="btn-primary" id="watchLiveNowBtn">
+        <i class="fas fa-play-circle"></i>
+        <a href="https://www.youtube.com/@henryonyirioha_ppn" target="_blank">WATCH LIVE NOW</a>
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Action Cards -->
+    <div class="cards-row">
+      <div class="feature-card-img" id="joinCard" data-action="join">
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <i class="fas fa-users"></i>
+          <h3>JOIN OUR PRAYER NETWORK</h3>
+          <p>Connect with a global community of believers</p>
+        </div>
+      </div>
+      <div class="feature-card-img" id="liveCard" data-action="live">
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <i class="fas fa-video"></i>
+          <h3>WATCH LIVE STREAMS</h3>
+          <p>Experience worship and prophetic declarations</p>
+        </div>
+      </div>
+      <div class="feature-card-img" id="prayerCard" data-action="prayer">
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <i class="fas fa-envelope-open-text"></i>
+          <h3>SEND PRAYER REQUESTS</h3>
+          <p>Let our community intercede on your behalf</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Latest Videos -->
+<div>
+  <div class="section-title"><i class="fas fa-photo-video"></i> Latest Videos</div>
+  <div class="videos-grid">
+    <!-- Video 1 -->
+    <div class="video-card glass-card-light">
+      <div class="video-thumb">
+        <img src="{% static 'images/sermon-dominion.jpeg' %}" alt="Powerful Prayer Session" class="thumb-img">
+      </div>
+      <div class="video-info">
+        <h4>Powerful Prayer Session</h4>
+        <div class="video-meta"><span>10.2K views</span><span>5h ago</span></div>
+      </div>
+    </div>
+    <!-- Video 2 -->
+    <div class="video-card glass-card-light">
+      <div class="video-thumb">
+        <img src="{% static 'images/sermon-persistent-prayer.jpeg' %}" alt="Faith-Fueled Revival Night" class="thumb-img">
+      </div>
+      <div class="video-info">
+        <h4>Faith-Fueled Revival Night</h4>
+        <div class="video-meta"><span>113K views</span><span>2 days ago</span></div>
+      </div>
+    </div>
+    <!-- Video 3 -->
+    <div class="video-card glass-card-light">
+      <div class="video-thumb">
+        <img src="{% static 'images/sermon-september-remember.jpeg' %}" alt="Breakthrough Healing Service" class="thumb-img">
+      </div>
+      <div class="video-info">
+        <h4>Breakthrough Healing Service</h4>
+        <div class="video-meta"><span>500K views</span><span>3 weeks ago</span></div>
+      </div>
+    </div>
+    <!-- Video 4 -->
+    <div class="video-card glass-card-light">
+      <div class="video-thumb">
+        <img src="{% static 'images/prayer.jpg' %}" alt="Morning Devotional Prayer" class="thumb-img">
+      </div>
+      <div class="video-info">
+        <h4>Morning Devotional Prayer</h4>
+        <div class="video-meta"><span>300K views</span><span>3 weeks ago</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Upcoming Livestreams + Testimonies -->
+<div class="double-column">
+  <div class="upcoming-box glass-card-light">
+    <h3><i class="fas fa-calendar-alt"></i> Upcoming Event Registration</h3>
+    <div style="text-align: center; padding: 1rem;">
+      <img src="{% static 'images/qr-code.png' %}" alt="QR Code to Register" style="max-width: 100%; height: auto; border-radius: 1rem;">
+      <p style="margin-top: 1rem;">Scan the QR code to register for our next event!</p>
+    </div>
+  </div>
+  <div class="testimonies-box glass-card-light">
+    <h3><i class="fas fa-comment-dots"></i> Testimonies</h3>
+    <div id="testimoniesContainer"></div>
+  </div>
+</div>
+
+    <!-- Newsletter (now uses Django) -->
+    <div class="newsletter glass-card-light">
+      <h3><i class="fas fa-bell"></i> Get Daily Prayer Notifications</h3>
+      <p>Sign up to receive daily prayer alerts, encouragement, and updates straight to your inbox.</p>
+      <form action="{% url 'newsletter_signup' %}" method="POST" class="news-form">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Your email address" required>
+        <button type="submit">Sign UP</button>
+      </form>
+    </div>
+
+    <!-- Testimonies Grid -->
+    <div id="testimoniesFull" style="scroll-margin-top: 90px; margin-top: 2rem;">
+      <div class="section-title">What Our Community Says</div>
+      <div class="info-grid">
+        <div class="info-card glass-card-light">“My marriage was restored after joining the prayer line. God answered!”<br/>— <strong>Ruth, Kenya</strong></div>
+        <div class="info-card glass-card-light">“I received financial breakthrough within weeks of the prophetic prayers.”<br/>— <strong>James, UK</strong></div>
+        <div class="info-card glass-card-light">“Healed from chronic illness during the Healing Service livestream.”<br/>— <strong>Grace, USA</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-social">
+        <a href="https://www.facebook.com/prayerpowernetwork" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.youtube.com/channel/UCS1lJ8S-1KBpQavhqSiwehQ" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://instagram.com/prayerpower_network" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>© 2026 Prayer Power Network (A Non-Denominational Church) <br> Registered charity number: 1192591 | <a href="#">Terms & Services</a> | Faith, Hope, Love</p>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <div id="socialModal" class="modal">
+    <div class="modal-content glass-card-dark">
+      <span class="close-modal">&times;</span>
+      <h3><i class="fas fa-users"></i> Join Our Network</h3>
+      <p>Connect with us on social media:</p>
+      <div class="social-modal-links">
+        <a href="https://www.facebook.com/prayerpowernetwork" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="https://instagram.com/prayerpower_network" target="_blank" class="social-icon"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.youtube.com/channel/UCS1lJ8S-1KBpQavhqSiwehQ" target="_blank" class="social-icon"><i class="fab fa-youtube"></i> YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="prayerModal" class="modal">
+    <div class="modal-content glass-card-dark">
+      <span class="close-modal">&times;</span>
+      <h3><i class="fas fa-envelope-open-text"></i> Send Prayer Request</h3>
+      <form action="{% url 'prayer_request' %}" method="POST" class="prayer-form">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <textarea name="message" rows="4" placeholder="Share your prayer request..." required></textarea>
+        <button type="submit">Submit Request</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

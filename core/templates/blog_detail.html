@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ post.title }} | Prayer Power Network</title>
+  <link rel="icon" type="image/png" href="{% static 'images/PPN_logo1.png' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    .post-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+    }
+    .post-title {
+      font-size: 2rem;
+      color: #1f2c44;
+      margin-bottom: 0.5rem;
+    }
+    .post-date {
+      color: #b9722a;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .post-content {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #1a1f2e;
+    }
+    .post-content p {
+      margin-bottom: 1.2rem;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #b9722a;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">
+    <img src="{% static 'images/PPN logo1.png' %}" alt="Logo" class="logo-img">
+    PRAYER POWER <span>NETWORK</span>
+  </div>
+  <div class="menu-icon" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'events' %}">Events</a></li>
+    <li><a href="{% url 'sermons' %}">Sermons</a></li>
+    <li><a href="{% url 'testimonies' %}">Testimonies</a></li>
+    <li><a href="{% url 'blog_list' %}">Blogs</a></li>
+    <li><a href="{% url 'appointment' %}">Book appointment</a></li>
+    <li><a href="{% url 'donate' %}" class="donate-btn">Donate</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="container">
+    <div class="post-container glass-card-light">
+      <h1 class="post-title">{{ post.title }}</h1>
+      <span class="post-date"><i class="far fa-calendar-alt"></i> {{ post.date|date:"Y-m-d" }}</span>
+      <div class="post-content">{{ post.content|safe }}</div>
+      <a href="{% url 'blog_list' %}" class="back-link"><i class="fas fa-arrow-left"></i> Back to all blogs</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-social">
+      <a href="https://www.facebook.com/prayerpowernetwork" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.youtube.com/channel/UCS1lJ8S-1KBpQavhqSiwehQ" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://instagram.com/prayerpower_network" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2026 Prayer Power Network (A Non-Denominational Church) <br> Registered charity number: 1192591 | <a href="#">Terms & Services</a> | Faith, Hope, Love</p>
+  </div>
+</footer>
+
+<script>
+  const toggleBtn = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  if (toggleBtn && navLinks) {
+    toggleBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('show'));
+    });
+  }
+</script>
+</body>
+</html>

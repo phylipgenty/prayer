@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Book Appointment | Prayer Power Network{% endblock %}
+
+{% block extra_css %}
+<style>
+  .appointment-wrapper {
+    max-width: 700px;
+    margin: 3rem auto;
+  }
+  .appointment-card {
+    padding: 2rem;
+  }
+  .appointment-card h1 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #1f2c44;
+    font-size: 1.8rem;
+  }
+  .appointment-card p {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #3b4a66;
+  }
+  .appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .appointment-form input,
+  .appointment-form select,
+  .appointment-form textarea {
+    padding: 0.8rem 1rem;
+    border: 1px solid #dce2ef;
+    border-radius: 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    background: white;
+    width: 100%;
+  }
+  .appointment-form button {
+    background: #1e2f4b;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 3rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .appointment-form button:hover {
+    background: #2d4268;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    text-align: center;
+    width: 100%;
+    color: #b9722a;
+    text-decoration: none;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="appointment-wrapper">
+    <div class="glass-card-light appointment-card">
+      <h1><i class="fas fa-calendar-check"></i> Schedule a Pastoral Appointment</h1>
+      <p>Fill in your details and we will get back to you within 24 hours.</p>
+
+      <form class="appointment-form" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Request Appointment</button>
+      </form>
+      <a href="{% url 'index' %}" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

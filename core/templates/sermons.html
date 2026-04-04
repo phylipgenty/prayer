@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sermons | Prayer Power Network</title>
+  <link rel="icon" type="image/png" href="{% static 'images/PPN_logo1.png' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    .sermons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .sermon-card {
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      overflow: hidden;
+      padding: 0;
+    }
+    .sermon-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    }
+    .sermon-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    .sermon-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .sermon-card:hover .sermon-thumb img {
+      transform: scale(1.05);
+    }
+    .sermon-info {
+      padding: 1.2rem;
+    }
+    .sermon-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1f2c44;
+      margin-bottom: 0.3rem;
+    }
+    .sermon-preacher {
+      font-size: 0.85rem;
+      color: #b9722a;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .sermon-date {
+      font-size: 0.75rem;
+      color: #5c6e8c;
+      margin-bottom: 0.5rem;
+    }
+    .sermon-description {
+      font-size: 0.85rem;
+      color: #3b4a66;
+      line-height: 1.4;
+    }
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.6);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .sermon-card:hover .play-icon {
+      opacity: 1;
+    }
+    .section-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: #3b4a66;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">
+    <img src="{% static 'images/PPN logo1.png' %}" alt="Logo" class="logo-img">
+    PRAYER POWER <span>NETWORK</span>
+  </div>
+  <div class="menu-icon" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'events' %}">Events</a></li>
+    <li><a href="{% url 'sermons' %}">Sermons</a></li>
+    <li><a href="{% url 'testimonies' %}">Testimonies</a></li>
+    <li><a href="{% url 'blog_list' %}">Blogs</a></li>
+    <li><a href="{% url 'appointment' %}">Book appointment</a></li>
+    <li><a href="{% url 'donate' %}" class="donate-btn">Donate</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="container">
+    <div class="section-title"><i class="fas fa-bible"></i> Sermons & Teachings</div>
+    <div class="section-intro">
+      <p>Watch powerful messages from our pastoral team. Click any card to watch the full sermon on YouTube.</p>
+    </div>
+    <div class="sermons-grid">
+      {% for sermon in sermons %}
+      <div class="sermon-card glass-card-light" onclick="window.open('https://www.youtube.com/watch?v={{ sermon.video_id }}', '_blank')">
+        <div class="sermon-thumb">
+          <img src="https://img.youtube.com/vi/{{ sermon.video_id }}/maxresdefault.jpg" 
+               alt="{{ sermon.title }}"
+               onerror="this.src='https://img.youtube.com/vi/{{ sermon.video_id }}/hqdefault.jpg'">
+          <div class="play-icon"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="sermon-info">
+          <h3 class="sermon-title">{{ sermon.title }}</h3>
+          <div class="sermon-preacher"><i class="fas fa-user"></i> {{ sermon.preacher }}</div>
+          <div class="sermon-date"><i class="far fa-calendar-alt"></i> {{ sermon.date|date:"Y-m-d" }}</div>
+          <p class="sermon-description">{{ sermon.description }}</p>
+        </div>
+      </div>
+      {% empty %}
+      <p>No sermons yet. Check back soon!</p>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-social">
+      <a href="https://www.facebook.com/prayerpowernetwork" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.youtube.com/channel/UCS1lJ8S-1KBpQavhqSiwehQ" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://instagram.com/prayerpower_network" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2026 Prayer Power Network (A Non-Denominational Church) <br> Registered charity number: 1192591 | <a href="#">Terms & Services</a> | Faith, Hope, Love</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const toggleBtn = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  if (toggleBtn && navLinks) {
+    toggleBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('show'));
+    });
+  }
+</script>
+</body>
+</html>

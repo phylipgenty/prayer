@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Testimonies | Prayer Power Network{% endblock %}
+
+{% block extra_css %}
+<style>
+  .testimonies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  .testimony-card {
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  .testimony-card:hover {
+    transform: translateY(-5px);
+  }
+  .testimony-text {
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: #2a3a58;
+  }
+  .testimony-author {
+    font-weight: 600;
+    color: #b9722a;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    color: #3b4a66;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="section-title"><i class="fas fa-comment-dots"></i> What God Is Doing</div>
+  <div class="section-intro">
+    <p>Real stories of breakthrough, healing, and transformation from our global community.</p>
+  </div>
+  <div class="testimonies-grid">
+    {% for testimony in testimonies %}
+    <div class="testimony-card glass-card-light">
+      <div class="testimony-text">“{{ testimony.content }}”</div>
+      <div class="testimony-author"><i class="fas fa-user-circle"></i> {{ testimony.name }}{% if testimony.location %}, {{ testimony.location }}{% endif %}</div>
+    </div>
+    {% empty %}
+    <p>No testimonies yet. Share your story!</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

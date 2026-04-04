@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Donate | Prayer Power Network{% endblock %}
+
+{% block extra_css %}
+<style>
+  .donate-wrapper {
+    max-width: 700px;
+    margin: 3rem auto;
+  }
+  .donate-card {
+    padding: 2rem;
+  }
+  .donate-card h1 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #1f2c44;
+    font-size: 1.8rem;
+  }
+  .donate-card p {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #3b4a66;
+  }
+  .bank-details {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(0,0,0,0.03);
+    border-radius: 1rem;
+    text-align: left;
+  }
+  .bank-details h3 {
+    color: #1f2c44;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .bank-details p {
+    margin: 0.5rem 0;
+    font-family: monospace;
+    font-size: 1rem;
+    text-align: left;
+  }
+  .bank-details .highlight {
+    font-weight: 700;
+    color: #b9722a;
+  }
+  .whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #25D366;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    font-weight: 500;
+  }
+  .whatsapp-link:hover {
+    background: #128C7E;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    text-align: center;
+    width: 100%;
+    color: #b9722a;
+    text-decoration: none;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="donate-wrapper">
+    <div class="glass-card-light donate-card">
+      <h1><i class="fas fa-heart"></i> Support the Mission</h1>
+      <p>Your generous gift helps us reach more souls, support missions, and keep prayer alive worldwide.</p>
+
+      <!-- Bank Account Details -->
+      <div class="bank-details">
+        <h3><i class="fas fa-university"></i> Bank Transfer Details</h3>
+        <p><span class="highlight">Account Name:</span> PRAYER POWER NETWORK</p>
+        <p><span class="highlight">Bank:</span> NATIONAL WESTMINSTER BANK PLC</p>
+        <p><span class="highlight">Sort Code:</span> 60-01-16</p>
+        <p><span class="highlight">Account Number:</span> 45330514</p>
+        <p><span class="highlight">WhatsApp:</span> 
+          <a href="https://wa.me/447990348763" target="_blank" class="whatsapp-link">
+            <i class="fab fa-whatsapp"></i> +44 7990 348763
+          </a>
+        </p>
+        <p style="font-size:0.85rem; margin-top:0.5rem;">For manual donations, please use the above bank details. You can also WhatsApp us for assistance.</p>
+      </div>
+
+      <p class="secure-note"><i class="fas fa-lock"></i> Online donations coming soon. For now, please use bank transfer.</p>
+      <a href="{% url 'index' %}" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
