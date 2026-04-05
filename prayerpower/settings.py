@@ -1,14 +1,17 @@
 import os
 from pathlib import Path
+import dj_database_url  # 👈 added
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-your-secret-key-here'
+# 🔐 SECURITY
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key')
 
-DEBUG = True  # Set False in production
+DEBUG = False  # ✅ production ready
 
-ALLOWED_HOSTS = ['*']  # Add your domain later
+ALLOWED_HOSTS = ['.onrender.com']  # ✅ will add domain later
 
+# 📦 APPS
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -19,8 +22,10 @@ INSTALLED_APPS = [
     'core',
 ]
 
+# ⚙️ MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ✅ added
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -31,6 +36,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'prayerpower.urls'
 
+# 🧩 TEMPLATES
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -49,27 +55,33 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'prayerpower.wsgi.application'
 
+# 🗄️ DATABASE (Render-ready)
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+    )
 }
 
-AUTH_PASSWORD_VALIDATORS = [
-    # Keep empty for development, or add validators as needed
-]
+# 🔒 PASSWORD VALIDATION (optional)
+AUTH_PASSWORD_VALIDATORS = []
 
+# 🌍 INTERNATIONAL
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# 📁 STATIC FILES
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# ✅ WhiteNoise storage (important)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# 🖼️ MEDIA FILES
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# 🔢 DEFAULT FIELD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
