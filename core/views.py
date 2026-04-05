@@ -73,15 +73,11 @@ def prayer_request_submit(request):
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 
-def reset_admin(request):
-    username = "prayer"
-    password = "NewPassword123"
-
-    user, created = User.objects.get_or_create(username=username)
-
-    user.is_staff = True
-    user.is_superuser = True
-    user.set_password(password)
-    user.save()
-
-    return HttpResponse(f"Admin ready. Created: {created}")
+def create_admin(request):
+    if not User.objects.filter(username="prayer").exists():
+        User.objects.create_superuser(
+            username="prayer",
+            password="PrayerPowerNetwork_2026"
+        )
+        return HttpResponse("Admin created")
+    return HttpResponse("Admin already exists")
