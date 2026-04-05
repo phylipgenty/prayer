@@ -3,7 +3,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+# import the reset view (TEMPORARY)
+from core.views import reset_admin
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    # TEMP FIX: remove after use
+    path('reset-admin/', reset_admin),
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

