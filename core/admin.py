@@ -5,6 +5,7 @@ from .models import BlogPost, Sermon, Testimony, Event, Appointment, PrayerReque
 class BlogPostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     list_display = ('title', 'date')
+    fields = ('title', 'slug', 'content', 'date', 'image_url')  # 👈 added image_url
 
 @admin.register(Sermon)
 class SermonAdmin(admin.ModelAdmin):

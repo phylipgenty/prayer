@@ -6,7 +6,7 @@ class BlogPost(models.Model):
     slug = models.SlugField(unique=True)
     content = models.TextField()
     date = models.DateField(default=timezone.now)
-    image = models.ImageField(upload_to='blog/', blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True, help_text="Direct image URL (e.g., https://i.imgur.com/example.jpg)")
 
     def __str__(self):
         return self.title
