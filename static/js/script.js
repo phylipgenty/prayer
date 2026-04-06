@@ -105,3 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Gallery slideshow (separate from hero)
+let galleryIndex = 0;
+const gallerySlides = document.querySelectorAll('.gallery-slide');
+function showGallerySlides() {
+  if (!gallerySlides.length) return;
+  gallerySlides.forEach(slide => slide.classList.remove('active'));
+  galleryIndex++;
+  if (galleryIndex > gallerySlides.length) galleryIndex = 1;
+  if (gallerySlides[galleryIndex - 1]) gallerySlides[galleryIndex - 1].classList.add('active');
+  setTimeout(showGallerySlides, 4000); // change every 4 seconds
+}
+if (gallerySlides.length > 0) showGallerySlides();

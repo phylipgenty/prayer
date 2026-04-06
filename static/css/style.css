@@ -76,9 +76,11 @@ body {
   border: none;
   color: #0f0f1a;
   font-weight: 700;
-  padding: 0.5rem 1.2rem;
+  padding: 0.75rem 1.5rem;  /* increased from 0.5rem 1.2rem */
   border-radius: 2rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  font-size: 1rem;          /* added explicit size */
+  transition: 0.2s;
 }
 .donate-btn:hover {
   background: linear-gradient(105deg, #ffaa44, #ff6a1a);
@@ -166,17 +168,17 @@ body {
 .btn-primary {
   background: #ffcd5c;
   border: none;
-  padding: 0.9rem 2.2rem;
+  padding: 0.5rem 1.2rem;    /* reduced from 0.9rem 2.2rem */
   font-weight: 700;
-  font-size: 1rem;
-  border-radius: 3rem;
+  font-size: 0.9rem;          /* smaller text */
+  border-radius: 2rem;        /* slightly less rounded */
   color: #1a1a2a;
   transition: 0.2s;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 .btn-primary a {
   color: #1a1a2a;
@@ -607,5 +609,60 @@ footer a:hover {
   }
   .card-content h3 {
     font-size: 1.3rem;
+  }
+}
+
+/* Full-width gallery section */
+.gallery-section {
+  position: relative;
+  width: 100%;
+  height: 60vh;  /* Adjust height as needed */
+  overflow: hidden;
+  margin-top: 0;  /* sits directly below navbar */
+}
+.gallery-slideshow-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.gallery-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+.gallery-slide.active {
+  opacity: 1;
+}
+.gallery-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.5);
+  padding: 1rem;
+  z-index: 2;
+  font-size: 1.2rem;
+}
+@media (max-width: 768px) {
+  .gallery-section {
+    height: 40vh;
+  }
+  .gallery-caption h2 {
+    font-size: 1.2rem;
+  }
+  .gallery-caption p {
+    font-size: 0.9rem;
   }
 }
