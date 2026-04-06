@@ -75,13 +75,23 @@ body {
   background: linear-gradient(105deg, #f5b042, #e07c2c);
   border: none;
   color: #0f0f1a;
-  font-weight: 700;
-  padding: 0.8rem 2rem;   /* increased padding */
-  border-radius: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  font-size: 1rem;
+  font-weight: 800;
+  padding: 0.9rem 2.2rem;   /* even more padding */
+  border-radius: 3rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  font-size: 1.1rem;        /* larger font */
   transition: 0.2s;
+  display: inline-block;
+  text-align: center;
 }
+
+@media (max-width: 920px) {
+  .donate-btn {
+    padding: 0.7rem 1.8rem;
+    font-size: 1rem;
+  }
+}
+
 .donate-btn:hover {
   background: linear-gradient(105deg, #ffaa44, #ff6a1a);
   color: white;

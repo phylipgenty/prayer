@@ -7,10 +7,12 @@ from .models import (
 from .forms import AppointmentForm
 
 def index(request):
-    latest_posts = BlogPost.objects.all().order_by('-date')[:3]  # get 3 most recent posts
-    return render(request, 'index.html', {'latest_posts': latest_posts})
-
-# ... rest of your views remain unchanged ...
+    latest_posts = BlogPost.objects.all().order_by('-date')[:3]
+    latest_sermons = Sermon.objects.all().order_by('-date')[:3]
+    return render(request, 'index.html', {
+        'latest_posts': latest_posts,
+        'latest_sermons': latest_sermons,
+    })
 
 def about(request):
     return render(request, 'about.html')
