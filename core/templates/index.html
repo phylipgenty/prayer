@@ -15,7 +15,7 @@
 <nav class="navbar">
   <div class="logo">
     <img src="{% static 'images/PPN logo1.png' %}" alt="Prayer Power Network Logo" class="logo-img">
-    PRAYER POWER <span>NETWORK</span>
+    PRAYER POWER NETWORK
   </div>
   <div class="menu-icon" id="menuToggle">
     <i class="fas fa-bars"></i>
@@ -97,54 +97,54 @@
       </div>
     </div>
 
-    <!-- Latest Videos -->
+    <!-- Our Church Gallery -->
 <div>
-  <div class="section-title"><i class="fas fa-photo-video"></i> Latest Videos</div>
-  <div class="videos-grid">
-    <!-- Video 1 -->
+  <div class="section-title"><i class="fas fa-church"></i> Our Church</div>
+  <div class="videos-grid">  <!-- reuse the same grid class for consistency -->
+    <!-- Card 1 -->
     <div class="video-card glass-card-light">
       <div class="video-thumb">
-        <img src="{% static 'images/sermon-dominion.jpeg' %}" alt="Powerful Prayer Session" class="thumb-img">
+        <img src="{% static 'images/prayer4.jpeg' %}" alt="Church Building" class="thumb-img">
       </div>
       <div class="video-info">
-        <h4>Powerful Prayer Session</h4>
-        <div class="video-meta"><span>10.2K views</span><span>5h ago</span></div>
+        <h4>Main Sanctuary</h4>
+        <p>Where we gather for worship and prayer.</p>
       </div>
     </div>
-    <!-- Video 2 -->
+    <!-- Card 2 -->
     <div class="video-card glass-card-light">
       <div class="video-thumb">
-        <img src="{% static 'images/sermon-persistent-prayer.jpeg' %}" alt="Faith-Fueled Revival Night" class="thumb-img">
+        <img src="{% static 'images/prayer2.jpeg' %}" alt="Worship Service" class="thumb-img">
       </div>
       <div class="video-info">
-        <h4>Faith-Fueled Revival Night</h4>
-        <div class="video-meta"><span>113K views</span><span>2 days ago</span></div>
+        <h4>Worship Night</h4>
+        <p>Moments of praise and presence.</p>
       </div>
     </div>
-    <!-- Video 3 -->
+    <!-- Card 3 -->
     <div class="video-card glass-card-light">
       <div class="video-thumb">
-        <img src="{% static 'images/sermon-september-remember.jpeg' %}" alt="Breakthrough Healing Service" class="thumb-img">
+        <img src="{% static 'images/prayer1.jpeg' %}" alt="Prayer Meeting" class="thumb-img">
       </div>
       <div class="video-info">
-        <h4>Breakthrough Healing Service</h4>
-        <div class="video-meta"><span>500K views</span><span>3 weeks ago</span></div>
+        <h4>Prayer Tower</h4>
+        <p>24/7 intercession room.</p>
       </div>
     </div>
-    <!-- Video 4 -->
+    <!-- Card 4 -->
     <div class="video-card glass-card-light">
       <div class="video-thumb">
-        <img src="{% static 'images/prayer.jpg' %}" alt="Morning Devotional Prayer" class="thumb-img">
+        <img src="{% static 'images/prayer3.jpeg' %}" alt="Children's Ministry" class="thumb-img">
       </div>
       <div class="video-info">
-        <h4>Morning Devotional Prayer</h4>
-        <div class="video-meta"><span>300K views</span><span>3 weeks ago</span></div>
+        <h4>Children's Ministry</h4>
+        <p>Raising the next generation.</p>
       </div>
     </div>
   </div>
 </div>
 
-    <!-- Upcoming Livestreams + Testimonies -->
+<!-- Upcoming Livestreams + Testimonies -->
 <div class="double-column">
   <div class="upcoming-box glass-card-light">
     <h3><i class="fas fa-calendar-alt"></i> Upcoming Event Registration</h3>
@@ -153,33 +153,48 @@
       <p style="margin-top: 1rem;">Scan the QR code to register for our next event!</p>
     </div>
   </div>
-  <div class="testimonies-box glass-card-light">
+ <a href="{% url 'testimonies' %}" style="text-decoration: none;">
+  <div class="testimonies-box glass-card-light" style="cursor: pointer;">
+  </div>
+</a>
     <h3><i class="fas fa-comment-dots"></i> Testimonies</h3>
     <div id="testimoniesContainer"></div>
   </div>
 </div>
 
     <!-- Newsletter (now uses Django) -->
-    <div class="newsletter glass-card-light">
-      <h3><i class="fas fa-bell"></i> Get Daily Prayer Notifications</h3>
-      <p>Sign up to receive daily prayer alerts, encouragement, and updates straight to your inbox.</p>
-      <form action="{% url 'newsletter_signup' %}" method="POST" class="news-form">
-        {% csrf_token %}
-        <input type="email" name="email" placeholder="Your email address" required>
-        <button type="submit">Sign UP</button>
-      </form>
-    </div>
+<div class="newsletter glass-card-light">
+  <h3><i class="fas fa-bell"></i> Get Daily Prayer Notifications</h3>
+  <p>subscribe to receive daily prayer alerts, encouragement, and updates straight to your inbox.</p>
+  <form action="{% url 'newsletter_signup' %}" method="POST" class="news-form">
+    {% csrf_token %}
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</div>
 
-    <!-- Testimonies Grid -->
-    <div id="testimoniesFull" style="scroll-margin-top: 90px; margin-top: 2rem;">
-      <div class="section-title">What Our Community Says</div>
-      <div class="info-grid">
-        <div class="info-card glass-card-light">“My marriage was restored after joining the prayer line. God answered!”<br/>— <strong>Ruth, Kenya</strong></div>
-        <div class="info-card glass-card-light">“I received financial breakthrough within weeks of the prophetic prayers.”<br/>— <strong>James, UK</strong></div>
-        <div class="info-card glass-card-light">“Healed from chronic illness during the Healing Service livestream.”<br/>— <strong>Grace, USA</strong></div>
-      </div>
+    <!-- Latest Blog Posts -->
+<div id="latest-blogs" style="scroll-margin-top: 90px; margin-top: 2rem;">
+  <div class="section-title"><i class="fas fa-blog"></i> From Our Blog</div>
+  <div class="info-grid">
+    {% for post in latest_posts %}
+    <div class="info-card glass-card-light" style="display: flex; flex-direction: column;">
+      {% if post.image %}
+      <img src="{{ post.image.url }}" alt="{{ post.title }}" style="width: 100%; height: 160px; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem;">
+      {% else %}
+      <img src="{% static 'images/blog-placeholder.jpg' %}" alt="Blog image" style="width: 100%; height: 160px; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem;">
+      {% endif %}
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">{{ post.title }}</h3>
+      <p style="color: #3b4a66; margin-bottom: 1rem;">{{ post.content|striptags|truncatechars:100 }}</p>
+      <a href="{% url 'blog_list' %}" class="reminder-btn" style="align-self: flex-start; margin-top: auto;">Read More →</a>
     </div>
+    {% empty %}
+    <div class="info-card glass-card-light">
+      <p>No blog posts yet. Check back soon!</p>
+    </div>
+    {% endfor %}
   </div>
+</div>
 
   <footer>
     <div class="footer-content">

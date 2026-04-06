@@ -76,10 +76,10 @@ body {
   border: none;
   color: #0f0f1a;
   font-weight: 700;
-  padding: 0.75rem 1.5rem;  /* increased from 0.5rem 1.2rem */
+  padding: 0.8rem 2rem;   /* increased padding */
   border-radius: 2rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  font-size: 1rem;          /* added explicit size */
+  font-size: 1rem;
   transition: 0.2s;
 }
 .donate-btn:hover {
@@ -379,6 +379,13 @@ body {
   color: #bb762e;
   margin-top: 0.5rem;
 }
+.testimonies-box {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.testimonies-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
 
 .newsletter {
   padding: 2rem;
@@ -665,4 +672,32 @@ footer a:hover {
   .gallery-caption p {
     font-size: 0.9rem;
   }
+}
+
+.info-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+.info-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.info-card p {
+  color: #3b4a66;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.info-card .reminder-btn {
+  align-self: flex-start;
+  margin-top: auto;
+  background: transparent;
+  border: 1px solid #b9722a;
+  color: #b9722a;
+}
+.info-card .reminder-btn:hover {
+  background: #b9722a;
+  color: white;
 }
