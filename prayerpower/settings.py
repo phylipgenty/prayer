@@ -85,3 +85,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # 🔢 DEFAULT FIELD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+print("DATABASE_URL:", os.environ.get("DATABASE_URL"))
