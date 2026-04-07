@@ -95,8 +95,8 @@
     {% for event in events %}
     <div class="event-card glass-card-light">
 
-      {% if event.image %}
-        <img src="{{ event.image }}" alt="{{ event.title }}" class="event-image">
+      {% if event.image_url %}
+        <img src="{{ event.image_url }}" alt="{{ event.title }}" class="event-image">
       {% else %}
         <img src="{% static 'images/event-placeholder.jpg' %}" alt="{{ event.title }}" class="event-image">
       {% endif %}
