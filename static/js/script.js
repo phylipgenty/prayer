@@ -3,28 +3,15 @@ function showAlert(msg) {
   alert(msg);
 }
 
-window.showSermonAlert = function(title) {
-  showAlert(`▶️ Playing: ${title}`);
-};
-
 document.addEventListener('DOMContentLoaded', () => {
   // Hero button
   document.getElementById('watchLiveNowBtn')?.addEventListener('click', () => 
     showAlert('🌐 LIVE STREAM: Join the worship now! Tune in via our YouTube channel.')
   );
 
-  // Donate button alert
-  const donate = document.getElementById('donateBtn');
-  if (donate) {
-    donate.addEventListener('click', (e) => { 
-      e.preventDefault(); 
-      showAlert('🙏 Thank you for your generosity. Donations support global outreach & prayer missions.'); 
-    });
-  }
-
-  // Testimonies inside double column
+  // Testimonies inside double column (with captions)
   const testimoniesList = [
-    { text: "The Birmingham conference shifted my prayer life. I’ll never be the same. Glory to God!", author: "— David K., Edinburgh" },
+    { text: "The Birmingham conference shifted my prayer life. I'll never be the same. Glory to God!", author: "— David K., Edinburgh" },
     { text: "After joining PPN prayers, my business turned around and my family received healing. God is faithful!", author: "— Sarah M., London" },
     { text: "My family found peace and breakthrough through their prayer requests. Highly recommend.", author: "— Lisa, Canada" }
   ];
@@ -42,12 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const prayerModal = document.getElementById('prayerModal');
   const closeBtns = document.querySelectorAll('.close-modal');
 
-  function openModal(modal) {
-    if (modal) modal.style.display = 'flex';
-  }
-  function closeModal(modal) {
-    if (modal) modal.style.display = 'none';
-  }
+  function openModal(modal) { if (modal) modal.style.display = 'flex'; }
+  function closeModal(modal) { if (modal) modal.style.display = 'none'; }
 
   const joinCard = document.getElementById('joinCard');
   const liveCard = document.getElementById('liveCard');
@@ -68,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === prayerModal) closeModal(prayerModal);
   });
 
-  // Slideshow logic
+  // Slideshow logic – LONGER DURATION (6 seconds)
   let slideIndex = 0;
   const slides = document.querySelectorAll('.slide');
   if (slides.length > 0) {
@@ -77,10 +60,23 @@ document.addEventListener('DOMContentLoaded', () => {
       slideIndex++;
       if (slideIndex > slides.length) slideIndex = 1;
       if (slides[slideIndex - 1]) slides[slideIndex - 1].classList.add('active');
-      setTimeout(showSlides, 5000);
+      setTimeout(showSlides, 6000); // 6 seconds
     }
     showSlides();
   }
+
+  // Gallery slideshow – also 6 seconds
+  let galleryIndex = 0;
+  const gallerySlides = document.querySelectorAll('.gallery-slide');
+  function showGallerySlides() {
+    if (!gallerySlides.length) return;
+    gallerySlides.forEach(slide => slide.classList.remove('active'));
+    galleryIndex++;
+    if (galleryIndex > gallerySlides.length) galleryIndex = 1;
+    if (gallerySlides[galleryIndex - 1]) gallerySlides[galleryIndex - 1].classList.add('active');
+    setTimeout(showGallerySlides, 6000);
+  }
+  if (gallerySlides.length > 0) showGallerySlides();
 
   // Mobile menu toggle
   const toggleBtn = document.getElementById('menuToggle');
@@ -106,15 +102,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Gallery slideshow (separate from hero)
-let galleryIndex = 0;
-const gallerySlides = document.querySelectorAll('.gallery-slide');
-function showGallerySlides() {
-  if (!gallerySlides.length) return;
-  gallerySlides.forEach(slide => slide.classList.remove('active'));
-  galleryIndex++;
-  if (galleryIndex > gallerySlides.length) galleryIndex = 1;
-  if (gallerySlides[galleryIndex - 1]) gallerySlides[galleryIndex - 1].classList.add('active');
-  setTimeout(showGallerySlides, 4000); // change every 4 seconds
+// Manchester countdown
+function startManchesterCountdown() {
+  const countdownEl = document.getElementById('manchesterCountdown');
+  if (!countdownEl) return;
+  const eventDate = new Date("May 15, 2026 18:00:00").getTime(); // CHANGE to actual D-day
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+    if (distance < 0) {
+      clearInterval(timer);
+      countdownEl.innerHTML = "🔥 EVENT STARTED! 🔥";
+    } else {
+      const days = Math.floor(distance / (1000*60*60*24));
+      const hours = Math.floor((distance % (86400000)) / (3600000));
+      const mins = Math.floor((distance % 3600000) / 60000);
+      const secs = Math.floor((distance % 60000) / 1000);
+      countdownEl.innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
+    }
+  }, 1000);
 }
-if (gallerySlides.length > 0) showGallerySlides();
+startManchesterCountdown();
