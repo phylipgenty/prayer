@@ -27,22 +27,28 @@
     <li><a href="{% url 'sermons' %}">Sermons</a></li>
     <li><a href="{% url 'testimonies' %}">Testimonies</a></li>
     <li><a href="{% url 'blog_list' %}">Blogs</a></li>
-    <li><a href="{% url 'appointment' %}">Book appointment</a></li>
-    <li><a href="{% url 'donate' %}" class="donate-btn">Donate</a></li>
+    <!-- Dropdown (replaces Book appointment & Donate) -->
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">More <i class="fas fa-caret-down"></i></a>
+      <div class="dropdown-content">
+        <a href="{% url 'contact' %}">Contact Us</a>
+        <a href="{% url 'appointment' %}">Book Appointment</a>
+        <a href="{% url 'newsletter_signup' %}">Newsletter</a>
+        <a href="{% url 'testimonies' %}?share=true">Share Your Testimony</a>
+      </div>
+    </li>
   </ul>
 </nav>
 
 <!-- Full-Width Gallery Slideshow -->
 <div class="gallery-section">
   <div class="gallery-slideshow-container">
-    <div class="gallery-slide fade" style="background-image: url('{% get_static_prefix %}images/gallery1.jpeg');"></div>
-    <div class="gallery-slide fade" style="background-image: url('{% get_static_prefix %}images/gallery2.jpeg');"></div>
-    <div class="gallery-slide fade" style="background-image: url('{% get_static_prefix %}images/gallery3.jpeg');"></div>
-    <div class="gallery-slide fade" style="background-image: url('{% get_static_prefix %}images/gallery4.jpeg');"></div>
-    <div class="gallery-slide fade" style="background-image: url('{% get_static_prefix %}images/gallery5.jpeg');"></div>
-    <!-- Add more slides as needed -->
+    <div class="gallery-slide fade" style="background-image: url('{% static 'images/gallery1.jpeg' %}');"></div>
+    <div class="gallery-slide fade" style="background-image: url('{% static 'images/gallery2.jpeg' %}');"></div>
+    <div class="gallery-slide fade" style="background-image: url('{% static 'images/gallery3.jpeg' %}');"></div>
+    <div class="gallery-slide fade" style="background-image: url('{% static 'images/gallery4.jpeg' %}');"></div>
+    <div class="gallery-slide fade" style="background-image: url('{% static 'images/gallery5.jpeg' %}');"></div>
   </div>
-  <!-- Optional caption overlay -->
   <div class="gallery-caption">
     <h2>Moments of Worship & Revival</h2>
     <p>Glimpses of God's move across our gatherings</p>
@@ -53,9 +59,9 @@
   <!-- Hero Slideshow -->
   <div class="hero" id="home">
     <div class="slideshow-container">
-      <div class="slide fade" style="background-image: url('{% get_static_prefix %}images/img1.jpeg');"></div>
-      <div class="slide fade" style="background-image: url('{% get_static_prefix %}images/img2.jpeg');"></div>
-      <div class="slide fade" style="background-image: url('{% get_static_prefix %}images/img3_1.jpeg');"></div>
+      <div class="slide fade" style="background-image: url('{% static 'images/img1.jpeg' %}');"></div>
+      <div class="slide fade" style="background-image: url('{% static 'images/img2.jpeg' %}');"></div>
+      <div class="slide fade" style="background-image: url('{% static 'images/img3_1.jpeg' %}');"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-cross"></div>
@@ -68,6 +74,13 @@
   </div>
 
   <div class="container">
+    <!-- Manchester Event Banner -->
+    <div class="manchester-banner">
+      <h2>🇬🇧 MANCHESTER BIG EVENT 🇬🇧</h2>
+      <p id="manchesterCountdown" class="countdown"></p>
+      <a href="{% url 'manchester' %}" class="gold-btn">Go to Manchester Page →</a>
+    </div>
+
     <!-- Action Cards -->
     <div class="cards-row">
       <div class="feature-card-img" id="joinCard" data-action="join">
@@ -100,17 +113,15 @@
     <div>
       <div class="section-title"><i class="fas fa-church"></i> Our Church</div>
       <div class="videos-grid">
-        <!-- Card 1 -->
         <div class="video-card glass-card-light">
           <div class="video-thumb">
-            <img src="{% static 'images/prayer4.jpeg' %}" alt="Church Building" class="thumb-img">
+            <img src="{% static 'images/prayer4.jpeg' %}" alt="Main Sanctuary" class="thumb-img">
           </div>
           <div class="video-info">
             <h4>Main Sanctuary</h4>
             <p>Where we gather for worship and prayer.</p>
           </div>
         </div>
-        <!-- Card 2 -->
         <div class="video-card glass-card-light">
           <div class="video-thumb">
             <img src="{% static 'images/prayer2.jpeg' %}" alt="Worship Service" class="thumb-img">
@@ -120,17 +131,15 @@
             <p>Moments of praise and presence.</p>
           </div>
         </div>
-        <!-- Card 3 -->
         <div class="video-card glass-card-light">
           <div class="video-thumb">
-            <img src="{% static 'images/prayer1.jpeg' %}" alt="Prayer Meeting" class="thumb-img">
+            <img src="{% static 'images/prayer1.jpeg' %}" alt="Prayer Tower" class="thumb-img">
           </div>
           <div class="video-info">
             <h4>Prayer Tower</h4>
             <p>24/7 intercession room.</p>
           </div>
         </div>
-        <!-- Card 4 -->
         <div class="video-card glass-card-light">
           <div class="video-thumb">
             <img src="{% static 'images/prayer3.jpeg' %}" alt="Children's Ministry" class="thumb-img">
@@ -143,7 +152,7 @@
       </div>
     </div>
 
-    <!-- Upcoming Livestreams + Testimonies -->
+    <!-- Upcoming Livestreams + Testimonies (dynamic) -->
     <div class="double-column">
       <div class="upcoming-box glass-card-light">
         <h3><i class="fas fa-calendar-alt"></i> Upcoming Event Registration</h3>
@@ -152,15 +161,14 @@
           <p style="margin-top: 1rem;">Scan the QR code to register for our next event!</p>
         </div>
       </div>
-      <a href="{% url 'testimonies' %}" style="text-decoration: none;">
-        <div class="testimonies-box glass-card-light" style="cursor: pointer;">
-          <h3><i class="fas fa-comment-dots"></i> Testimonies</h3>
-          <div id="testimoniesContainer"></div>
-        </div>
-      </a>
+      <div class="testimonies-box glass-card-light">
+        <h3><i class="fas fa-comment-dots"></i> Testimonies</h3>
+        <div id="testimoniesContainer"></div>
+        <a href="{% url 'testimonies' %}" style="display: inline-block; margin-top: 1rem;">Read all →</a>
+      </div>
     </div>
 
-    <!-- Recent Sermons Preview -->
+    <!-- Recent Sermons Preview (dynamic from context) -->
     <div class="sermons-preview" style="margin-top: 3rem;">
       <div class="section-title"><i class="fas fa-bible"></i> Recent Sermons</div>
       <div class="videos-grid">
@@ -192,7 +200,7 @@
     <!-- Newsletter -->
     <div class="newsletter glass-card-light">
       <h3><i class="fas fa-bell"></i> Get Daily Prayer Notifications</h3>
-      <p>subscribe to receive daily prayer alerts, encouragement, and updates straight to your inbox.</p>
+      <p>Subscribe to receive daily prayer alerts, encouragement, and updates straight to your inbox.</p>
       <form action="{% url 'newsletter_signup' %}" method="POST" class="news-form">
         {% csrf_token %}
         <input type="email" name="email" placeholder="Your email address" required>
@@ -200,20 +208,26 @@
       </form>
     </div>
 
-    <!-- Latest Blog Posts -->
+    <!-- Latest Blog Posts (dynamic) with smaller images -->
     <div id="latest-blogs" style="scroll-margin-top: 90px; margin-top: 2rem;">
-      <div class="section-title"><i class="fas fa-blog"></i> From Our Blog</div>
+      <div class="section-title"><i class="fas fa-blog"></i> 
+        {% if latest_posts %}
+          Latest from Our Blog
+        {% else %}
+          From Our Blog
+        {% endif %}
+      </div>
       <div class="info-grid">
         {% for post in latest_posts %}
-        <div class="info-card glass-card-light" style="display: flex; flex-direction: column;">
+        <div class="info-card glass-card-light">
           {% if post.image_url %}
-          <img src="{{ post.image_url }}" alt="{{ post.title }}" style="width: 100%; height: 160px; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem;">
+          <img src="{{ post.image_url }}" alt="{{ post.title }}" class="blog-img">
           {% else %}
-          <img src="{% static 'images/blog-placeholder.jpg' %}" alt="Blog image" style="width: 100%; height: 160px; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem;">
+          <img src="{% static 'images/blog-placeholder.jpg' %}" alt="Blog image" class="blog-img">
           {% endif %}
-          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">{{ post.title }}</h3>
-          <p style="color: #3b4a66; margin-bottom: 1rem;">{{ post.content|striptags|truncatechars:100 }}</p>
-          <a href="{% url 'blog_list' %}" class="reminder-btn" style="align-self: flex-start; margin-top: auto;">Read More →</a>
+          <h3 class="blog-title">{{ post.title }}</h3>
+          <p class="blog-excerpt">{{ post.content|striptags|truncatechars:80 }}</p>
+          <a href="{% url 'blog_detail' post.slug %}" class="reminder-btn">Read More →</a>
         </div>
         {% empty %}
         <div class="info-card glass-card-light">
@@ -221,6 +235,16 @@
         </div>
         {% endfor %}
       </div>
+    </div>
+
+    <!-- PayPal Donate -->
+    <div class="paypal-donate">
+      <h3>Support the Ministry via PayPal</h3>
+      <form action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@example.com">
+        <input type="hidden" name="currency_code" value="GBP">
+        <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Donate with PayPal button">
+      </form>
     </div>
 
     <footer>
@@ -247,7 +271,6 @@
         </div>
       </div>
     </div>
-
     <div id="prayerModal" class="modal">
       <div class="modal-content glass-card-dark">
         <span class="close-modal">&times;</span>
