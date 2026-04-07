@@ -28,7 +28,7 @@
     <li><a href="{% url 'testimonies' %}">Testimonies</a></li>
     <li><a href="{% url 'blog_list' %}">Blogs</a></li>
     <!-- Dropdown (replaces Book appointment & Donate) -->
-    <li class="dropdown">
+    {% comment %} <li class="dropdown">
       <a href="javascript:void(0)" class="dropbtn">More <i class="fas fa-caret-down"></i></a>
       <div class="dropdown-content">
         <a href="{% url 'contact' %}">Contact Us</a>
@@ -36,7 +36,7 @@
         <a href="{% url 'newsletter_signup' %}">Newsletter</a>
         <a href="{% url 'testimonies' %}?share=true">Share Your Testimony</a>
       </div>
-    </li>
+    </li> {% endcomment %}
   </ul>
 </nav>
 
