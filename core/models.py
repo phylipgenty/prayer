@@ -14,6 +14,7 @@ class BlogPost(models.Model):
     class Meta:
         ordering = ['-date']
 
+
 class Sermon(models.Model):
     title = models.CharField(max_length=200)
     video_id = models.CharField(max_length=50, help_text="YouTube video ID (e.g., dQw4w9WgXcQ)")
@@ -27,6 +28,7 @@ class Sermon(models.Model):
     class Meta:
         ordering = ['-date']
 
+
 class Testimony(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100, blank=True)
@@ -36,16 +38,24 @@ class Testimony(models.Model):
     def __str__(self):
         return f"{self.name} - {self.date}"
 
+
 class Event(models.Model):
     title = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
     start_date = models.DateField()
     end_date = models.DateField()
     description = models.TextField()
-    image = models.ImageField(upload_to='events/', blank=True, null=True)
+
+    # ✅ CHANGED HERE
+    image_url = models.URLField(
+        blank=True,
+        null=True,
+        help_text="Paste image URL (e.g., from Unsplash, Pexels, etc.)"
+    )
 
     def __str__(self):
         return self.title
+
 
 class Appointment(models.Model):
     name = models.CharField(max_length=100)
@@ -59,6 +69,7 @@ class Appointment(models.Model):
     def __str__(self):
         return f"{self.name} - {self.preferred_date}"
 
+
 class PrayerRequest(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -67,6 +78,7 @@ class PrayerRequest(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.submitted_at}"
+
 
 class NewsletterSubscriber(models.Model):
     email = models.EmailField(unique=True)
